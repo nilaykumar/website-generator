@@ -1,0 +1,23 @@
+{% extends "base.njk" %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="../static/css/posts.css">
+{% endblock %}
+
+{% block header %}
+<div id="banner">
+<a href="../index.html">odds &amp; ends</a>
+</div>
+
+<div id="nav">
+<a href="../about.html">about</a>
+<a href="../links.html">links</a>
+</div>
+{% endblock %}
+
+{% block contents %}
+<h1>{{ title }}</h1>
+<em>{{ date | date("MMMM D, YYYY") }}</em>
+{{ contents | safe }}
+{% endblock %}

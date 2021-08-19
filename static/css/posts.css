@@ -1,0 +1,29 @@
+div#content ul {
+    list-style: circle;
+}
+
+div#content div.csl-left-margin {
+    float: left;
+    padding-left: 1.0em;
+    margin-right: 1em;
+}
+
+div.definition, div.theorem, div.lemma {
+    background: linear-gradient(to right, aliceblue, white);
+    border-radius: 10px;
+    padding-left: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+div.definition strong:first-of-type, div.theorem strong:first-of-type, div.lemma strong:first-of-type {
+    text-decoration: underline;
+}
+
+.footnote-back {
+    padding-left: 0.3em;
+}
+
+h1#bibliography {
+    margin-top:3em;
+}

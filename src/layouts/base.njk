@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{{ title }} | Nilay Kumar</title>
+
+    {% block styles %}
+    <link rel="stylesheet" type="text/css" href="static/css/stylesheet.css">
+    {% endblock styles %}
+    <script>
+      MathJax = {
+          loader: {
+              load: ['[custom]/xypic.js'],
+              paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+              packages: {'[+]': ['xypic']}
+          }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-chtml-full.js">
+    </script>
+  </head>
+
+  <body>
+
+    <div id="header">
+      {% block header %}
+      <div id="banner">
+        <a href="index.html">odds &amp; ends</a>
+      </div>
+
+      <div id="nav">
+        <a href="about.html">about</a>
+        <a href="links.html">links</a>
+      </div>
+      {% endblock %}
+    </div>
+
+    <div id="content">
+      {% block contents %}
+      {{ contents | safe }}
+      {% endblock %}
+    </div>
+
+    <div id="footer">
+    {% block footer %}
+    <div id="license">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a></div>
+
+    <div id="footertext">
+      <a href="https://github.com/nilaykumar/nilaykumar.github.io">powered</a>
+      by <a href="https://metalsmith.io/">Metalsmith</a>
+      and <a href="https://pandoc.org/">pandoc</a>
+    </div>
+    {% endblock %}
+    </div>
+  </body>
+
+</html>

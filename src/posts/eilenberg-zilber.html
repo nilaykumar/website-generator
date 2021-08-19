@@ -1,0 +1,107 @@
+---
+title: The twisted Eilenberg-Zilber theorem
+layout: post.njk
+collection: posts
+date: 2021-08-13
+---
+<p>Recently I was curious about the origins and initial applications of the homological perturbation lemma (more on that below). Turns out it’s a beautiful story involving the homology of simplicial fibrations (due to <span class="citation" data-cites="shih">[1]</span> and <span class="citation" data-cites="brown">[2]</span>) that I had somehow managed to avoid learning about. In this brief note I want to sketch this arc of ideas.</p>
+<p>For spaces <span class="math inline">\(B\)</span> and <span class="math inline">\(F\)</span>, the Eilenberg-Zilber theorem <span class="citation" data-cites="EML">[3]</span> constructs chain equivalences <span class="math display">\[\begin{xy}
+    \xymatrix{
+      C_*(B\times F) \ar@(ur, ul)[r]^{} &amp; C_*(B) \otimes C_*(F) \ar@(dl, dr)[l]^{}
+    }
+  \end{xy}\]</span> computing the singular chains of the trivial bundle <span class="math inline">\(B \times F\)</span> as a tensor product of the chains on <span class="math inline">\(B\)</span> and the chains on <span class="math inline">\(F\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The twisted Eilenberg-Zilber theorem is the generalization to an arbitrary bundle <span class="math inline">\(E=B \times F\)</span>. We will work in the setting of simplicial sets instead of topological spaces. In this setting, the combinatorics of simplicial sets conspire to make Kan fibrations amenable to straightforward calculation. The key idea, due to <span class="citation" data-cites="BGM">[4]</span>, is that of a minimal Kan fibration. We will not worry about the definition of minimality, but the following two results are important:</p>
+<ul>
+<li><p>every Kan fibration fiberwise strong deformation retracts to a minimal Kan fibration</p></li>
+<li><p>every minimal Kan fibration is a fiber bundle.</p></li>
+</ul>
+<p>The details of the combinatorics can be found in <span class="citation" data-cites="GJ">[5]</span>; see, in particular, Proposition 10.3 and Corollary 10.7.</p>
+<p>Simplicial fiber bundles have a particularly simple structure: they can be written as twisted Cartesian products (TCP) <span class="math inline">\(B\times_\tau F\)</span>. That is, the underlying set of <span class="math inline">\(n\)</span>-simplices <span class="math inline">\((B\times_\tau F)_n=B_n\times F_n\)</span> is that of the trivial bundle, but the zeroth face map <span class="math inline">\(d_0\)</span> is modified: <span class="math display">\[\begin{cases}
+    d_i(b, f) = (d_ib, d_if) &amp; i &gt; 0 \\
+    d_0(b, f) = (d_0b, \tau(b)(d_0f)) &amp; i=0 \\
+    s_i(b, f) = (s_ib, s_if) &amp; i\geq0
+  \end{cases}\]</span> for some <span class="math inline">\(\tau: B\to \mathop{\mathrm{Aut}}(F)\)</span> (see <span class="citation" data-cites="BGM">[4]</span>, Section 3, Definition 4.2, and section 5, as well as <span class="citation" data-cites="cartan">[6]</span>, p. 1-10). In other words, TCPs are just Cartesian products where the zeroth face map is twisted according to simplicial automorphisms of the fiber.</p>
+<p>The story so far, then, is that every Kan fibration is fiberwise homotopy equivalent to a TCP. It is in this sense that the following is a generalization of the Eilenberg-Zilber theorem:</p>
+<div class="theorem">
+<p><strong>Theorem 1</strong> (Twisted Eilenberg-Zilber).  Let <span class="math inline">\(B\)</span> and <span class="math inline">\(F\)</span> be simplicial sets and let <span class="math inline">\(B \times_\tau F\)</span> be a twisted Cartesian product. Then there is an equivalence <span class="math display">\[C_*(B) \otimes_\tau C_*(F) \longrightarrow C_*(B \times_\tau F)\]</span> where the complex on the left is the usual tensor product with a modified differential which we describe below (the twisted tensor product of <span class="citation" data-cites="brown">[2]</span>).</p>
+</div>
+<p>This was first proved in the category of spaces using the method of acyclic models <span class="citation" data-cites="brown">[2]</span>. A concise proof was provided in <span class="citation" data-cites="brownEZ">[7]</span> using essentially what is now the standard formulation of the homological perturbation lemma, which was inspired by the formulas in <span class="citation" data-cites="shih">[1]</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The basic unit of homological perturbation theory (see <span class="citation" data-cites="crainic">[8]</span> for an introduction) is the strong deformation retraction:</p>
+<div class="definition">
+<p><strong>Definition 2</strong>.  A <strong>strong deformation retraction</strong> (SDR) is the following data:</p>
+<ul>
+<li><p>complexes <span class="math inline">\((C, d_C)\)</span> and <span class="math inline">\((D, d_D)\)</span>,</p></li>
+<li><p>chain maps <span class="math inline">\(i:C\to D\)</span> and <span class="math inline">\(p:D\to C\)</span> such that <span class="math display">\[p\circ i = \mathrm{id}_D,\]</span></p></li>
+<li><p>a chain homotopy <span class="math inline">\(h:D\to D\)</span> such that <span class="math display">\[\mathrm{id}_D - i\circ p = [d_D, h],\]</span></p></li>
+</ul>
+<p>satisfying the “side conditions” <span class="math display">\[hi = 0, \qquad ph = 0, \qquad h^2=0.\]</span></p>
+</div>
+<p>We often draw this data diagrammatically as <span class="math display">\[\begin{xy}
+    \xymatrix{
+      (C,d_C) \ar@(ur, ul)[r]^{i} &amp; (D,d_D)\ar@(ul, ur)[]|{h} \ar@(dl, dr)[l]^{p}
+    }
+  \end{xy}\]</span> Suppose now that we have a <strong>perturbation</strong> <span class="math inline">\(\delta\)</span> of the differential <span class="math inline">\(d_D\)</span> on the right-hand side of an SDR. That is, a differential <span class="math inline">\(\delta:D\to D\)</span> such that <span class="math inline">\((d+\delta)^2 =0\)</span>, i.e. <span class="math display">\[=0.\]</span> We ask, moreover, that <span class="math inline">\(\delta\)</span> is a <strong>small</strong> perturbation. That is, we ask that the degree zero operator <span class="math display">\[(1-\delta h)^{-1} = \sum_{j=0}^\infty (\delta h)^j\]</span> be well-defined on <span class="math inline">\(D\)</span>. Under this technical condition, the perturbation can be “transferred” to the left-hand side to obtain a new, perturbed SDR:</p>
+<div class="theorem">
+<p><strong>Theorem 3</strong> (Homological perturbation lemma).  Let <span class="math inline">\(\delta\)</span> be a small perturbation of <span class="math inline">\(d_D\)</span>. Then, given an SDR in the notation from above, there exists a perturbed SDR <span class="math display">\[\begin{xy}
+      \xymatrix@C+=50pt{
+        (C,d_C+p(1-\delta h)^{-1}\delta) \ar@(ur, ul)[r]^{(1-h\delta)^{-1}i} &amp; (D,d_D+\delta)\ar@(ul, ur)[]^{h+h(1-\delta h)^{-1}\delta h} \ar@(dl, dr)[l]^{p(1-\delta h)^{-1}}
+      }
+    \end{xy}\]</span></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Straightforward, if tedious, computation. See, for instance, <span class="citation" data-cites="crainic">[8]</span>. ◻</p>
+</div>
+<p>We can now sketch the proof of the twisted Eilenberg-Zilber theorem. The (untwisted) Eilenberg-Zilber theorem of <span class="citation" data-cites="EML">[3]</span> gives us an SDR <span class="math display">\[\begin{xy}
+    \xymatrix{
+      C_*(B)\otimes C_*(F) \ar@(ur, ul)[r]^{i} &amp; C_*(B\times F)\ar@(ul, ur)[]|{h} \ar@(dl, dr)[l]^{p}
+    }
+  \end{xy}\]</span> where the differential on the left is the usual differential on the tensor product. The differential on the right — call it <span class="math inline">\(d^\mathrm{id}\)</span> — is the standard differential on the simplicial chains of <span class="math inline">\(B\times F\)</span>. Notice, now, that the underlying graded module of the complex <span class="math inline">\(C_*(B\times_\tau F)\)</span> is just <span class="math inline">\(C_*(B\times F).\)</span> The differential, however, is different — call it <span class="math inline">\(d^\tau\)</span>. The resulting perturbation satisfies the technical condition described above:</p>
+<div class="lemma">
+<p><strong>Lemma 4</strong>.  The perturbation <span class="math inline">\(d^\tau - d^\mathrm{id}\)</span> of the differential <span class="math inline">\(d^\mathrm{id}\)</span> on <span class="math inline">\(C_*(B\times F)\)</span> is small.</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span style="color: red">[TODO:what is the intuition here?]</span> ◻</p>
+</div>
+<p>Hence we may apply the homological perturbation lemma to transfer the perturbation to the left and obtain a new SDR: <span class="math display">\[\begin{xy}
+    \xymatrix{
+      C_*(B)\otimes_\tau C_*(F) \ar@(ur, ul)[r]^{i&#39;} &amp; C_*(B\times_\tau F)\ar@(ul, ur)[]|{h&#39;} \ar@(dl, dr)[l]^{p&#39;}
+    }
+  \end{xy}\]</span> where the complex of the left is just <span class="math display">\[\begin{aligned}
+  (C_*(B)\otimes_\tau C_*(F), d) =&amp;\, (C_*(B) \otimes C_*(F),  d_{C_*(B)\otimes C_*(F)} \\
+  &amp;+ p(1-(d^\tau-d^\mathrm{id})h)^{-1}(d^\tau -d^\mathrm{id})i).\end{aligned}\]</span> Thus we see that the chains <span class="math inline">\(C_*(B\times_\tau F)\)</span> on the twisted Cartesian product <span class="math inline">\(B\times_\tau F\)</span> can be written as a “twist”, or perturbation, of the tensor product <span class="math inline">\(C_*(B)\otimes C_*(F).\)</span> This completes the proof of the twisted Eilenberg-Zilber theorem.</p>
+<p>So we’ve seen that homological perturbation theory was born from the study of Kan fibrations in algebraic topology. Since then, however, there have been all sorts of applications across algebra, geometry, and physics. One thing in particular that I’ve been meaning to understand for a long time is its relationship with Feynman diagrams (see, for instance, <span class="citation" data-cites="gjf">[9]</span>). Hopefully I’ll get around to learning about that soon!</p>
+<h1 class="unnumbered" id="bibliography">References</h1>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-shih" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Shih W (1962) Homologie des espaces fibrés. <em>Inst Hautes Études Sci Publ Math</em> 88.</div>
+</div>
+<div id="ref-brown" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Brown EH Jr. (1959) Twisted tensor products. <span>I</span>. <em>Ann of Math (2)</em> 69: 223–246.</div>
+</div>
+<div id="ref-EML" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Eilenberg S, Mac Lane S (1953) On the groups <span><span class="math inline">\(H(\Pi,n)\)</span></span>. <span>I</span>. <em>Ann of Math (2)</em> 58: 55–106.</div>
+</div>
+<div id="ref-BGM" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Barratt MG, Gugenheim VKAM, Moore JC (1959) On semisimplicial fibre-bundles. <em>Amer J Math</em> 81: 639–657.</div>
+</div>
+<div id="ref-GJ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Goerss PG, Jardine JF (2009) Simplicial homotopy theory, Birkhäuser Verlag, Basel.</div>
+</div>
+<div id="ref-cartan" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Cartan H (1958) Sur la théorie de <span>K</span>an, <em>Séminaire <span>H</span>enri <span>C</span>artan; 9e année: 1956/57. <span>Q</span>uelques questions de topologie, <span>E</span>xposé no. 1</em>, Secrétariat mathématique, Paris, 19.</div>
+</div>
+<div id="ref-brownEZ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Brown R (1965) The twisted <span>E</span>ilenberg-<span>Z</span>ilber theorem, <em>Simposio di <span>T</span>opologia (<span>M</span>essina, 1964)</em>, Edizioni Oderisi, Gubbio, 33–37.</div>
+</div>
+<div id="ref-crainic" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Crainic M (2004) <span class="nocase">On the perturbation lemma, and deformations</span>. <em>arXiv Mathematics e-prints</em> math/0403266.</div>
+</div>
+<div id="ref-gjf" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Gwilliam O, Johnson-Freyd T (2012) How to derive feynman diagrams for finite-dimensional integrals directly from the BV formalism. <em>Topology and Quantum Theory in Interaction, in: Contemp Math</em> 718: 175–185.</div>
+</div>
+</div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Here <span class="math inline">\(C_*(X)=C_*(X, R)\)</span> for a ring <span class="math inline">\(R\)</span> that we will leave implicit. As we will work with simplicial sets instead of spaces, <span class="math inline">\(C_*(X_\bullet)\)</span> is really the normalized simplicial chain complex of a simplicial set <span class="math inline">\(X_\bullet\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Notice the two <em>different</em> authors E.H. Brown <span class="citation" data-cites="brown">[2]</span> and R. Brown <span class="citation" data-cites="brownEZ">[7]</span>!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>

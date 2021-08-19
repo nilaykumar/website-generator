@@ -1,0 +1,15 @@
+{% extends "base.njk" %}
+
+{% block contents %}
+<ul>
+{% for post in posts %}
+<li>
+<a href="{{ post.path }}">{{ post.title }}</a>
+<div class="date">{{ post.date | date("MMMM D, YYYY")}}</div>
+</li>
+{% else %}
+There seem to be no posts in this blog...
+{% endfor %}
+</ul>
+
+{% endblock %}
