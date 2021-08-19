@@ -17,6 +17,7 @@ metalsmith(__dirname)
     .use(layouts({ // templating
         directory: './src/layouts/', // the layouts are stored here
         default: 'base.njk', // the default layout includes a header/footer
+        pattern: '**/*.html',
         engineOptions: {
             filters: {
                 date: dateFilter // nunjucks-date-filter is used to make dates readable
